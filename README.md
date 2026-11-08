@@ -8,7 +8,7 @@ Dates and event names are preserved from the workbook. In the supplied workbook,
 
 ## Generate locally
 
-Requires Node.js 24 or newer.
+Requires Node.js 24 or newer. Live downloads also require GNU wget. On Windows, the downloader runs wget in your default WSL distribution. GitHub's Ubuntu runner includes wget.
 
 ```sh
 npm ci
@@ -30,9 +30,9 @@ The source workbook and `.env` stay out of Git. Generated calendar files and `co
 2. Ensure Actions are enabled and the workflow may write repository contents.
 3. Run **Actions → Update VU timetable → Run workflow** to verify access. The workflow also runs every two hours and on relevant pushes to `main`.
 
-The downloader adds `download=1` to SharePoint links and validates that the response is an Excel workbook containing the expected worksheet. It fails without replacing the previous workbook or published calendars if access is denied or SharePoint returns a sign-in page.
+The downloader adds `download=1` to SharePoint links and uses wget, which retains SharePoint's cookies across redirects. It validates that the response is an Excel workbook containing the expected worksheet. It fails without replacing the previous workbook or published calendars if access is denied or SharePoint returns a sign-in page.
 
-**Live download access is not yet verified.** The supplied SharePoint link failed to download from the development environment. If it requires institutional sign-in, a GitHub runner will need an authenticated integration or a download link accessible without sign-in. Uploading a local workbook alone does not enable automatic updates.
+The supplied SharePoint link was verified to return a valid workbook with wget and `download=1`. Node's fetch returned HTTP 403 because it did not retain the sharing-link cookie. Future changes to NSBM's sharing permissions can still require a new link or an authenticated integration.
 
 To download manually through the same code:
 
