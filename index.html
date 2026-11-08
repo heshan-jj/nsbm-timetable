@@ -3,10 +3,10 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>NSBM Timetable</title>
+		<title>VU 25.3 Year 2 Timetable</title>
 		<meta
 			name="description"
-			content="Add your NSBM degree timetable to Google Calendar. Calendar updates every hour."
+			content="Add the VU 25.3 Year 2 Cyber Security timetable to Google Calendar. Automatic checks run every two hours when configured."
 		/>
 		<style>
 			:root {
@@ -240,9 +240,9 @@
 	<body>
 		<main>
 			<header>
-				<h1>NSBM Timetable</h1>
+				<h1>VU 25.3 · Year 2 Timetable</h1>
 				<p class="lede">
-					Pick your degree, then add it to Google Calendar.
+					Add your BIT Cyber Security timetable to Google Calendar.
 				</p>
 				<p class="meta" id="updated"></p>
 			</header>
@@ -319,7 +319,8 @@
 			const cacheBust = Math.random().toString(36).slice(2);
 
 			function calendarUrl(id) {
-				return `${config.baseUrl}/ics/${id}.ics?${cacheBust}`;
+				const base = config.baseUrl ? `${config.baseUrl.replace(/\/$/, "")}/` : new URL("./", location.href);
+				return new URL(`ics/${encodeURIComponent(id)}.ics`, base).href;
 			}
 
 			function calendarTitle(id) {

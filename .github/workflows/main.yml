@@ -1,4 +1,7 @@
+name: Update VU timetable
+
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -9,8 +12,7 @@ on:
     - cron: "0 */2 * * *"
 
 jobs:
-  update_calanders:
-    environment: main
+  update_calendars:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -18,17 +20,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
 
-      - run: bun install
+      - run: npm ci
+      - run: npm test
+      - run: npm run typecheck
 
-      - name: Update Calanders
+      - name: Download live timetable
         env:
           CAL_LINK: ${{ secrets.CAL_LINK }}
-        run: bash ./scripts/download.sh
+        run: npm run download
 
-      - run: bun run index.ts
+      - run: npm run generate
 
       - name: Commit calendars
         run: |

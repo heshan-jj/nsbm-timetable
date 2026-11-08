@@ -1,1 +1,3 @@
-export $(cat .env | xargs) && ./scripts/download.sh
+#!/usr/bin/env bash
+set -euo pipefail
+npm run download
