@@ -13,9 +13,9 @@ export function cellDate(value: CellValue): Date | undefined {
 	if (value && typeof value === "object" && "result" in value) return cellDate(value.result);
 }
 
-/** Times in this workbook are text, e.g. `9am - 10am` or `12:30pm - 1pm`. */
+/** Workbook times include `9am - 10am`, `12:30pm - 1pm` and `09.00 am - 10.00 am`. */
 export function parseTimeSlot(text: string): [number, number] | undefined {
-	const match = text.trim().match(/^(\d{1,2})(?::(\d{2}))?\s*(am|pm)\s*[-–—]\s*(\d{1,2})(?::(\d{2}))?\s*(am|pm)$/i);
+	const match = text.trim().match(/^(\d{1,2})(?:[:.](\d{2}))?\s*(am|pm)\s*[-–—]\s*(\d{1,2})(?:[:.](\d{2}))?\s*(am|pm)$/i);
 	if (!match) return;
 	const minutes = (hour: string, minute: string | undefined, period: string) => {
 		const h = Number(hour), m = Number(minute ?? 0);
@@ -49,7 +49,7 @@ export function parseTimetable(
 	for (let row = settings.dataStartIndex; row <= worksheet.rowCount; row++) {
 		const rowDates = settings.weekDaysArr.map(col => cellDate(worksheet.getCell(row, col).value));
 		if (rowDates.every((date): date is Date => date !== undefined)) {
-			// Preserve each source date, including the inconsistent years in Weeks 2 and 7.
+			// Preserve dates exactly as supplied by the workbook.
 			dates = rowDates;
 			continue;
 		}

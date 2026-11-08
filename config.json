@@ -1,24 +1,30 @@
 {
   "baseUrl": "",
-  "lastUpdated": "2026-11-08T15:21:42.152Z",
+  "lastUpdated": "2026-11-08T16:31:37.521Z",
   "modules": {
-    "NIT2102": "Cyber Security Essentials",
-    "NIT2171": "Introduction to ICT Management",
-    "NIT2122": "Server Administration and Management",
-    "NIT2141": "Digital Forensics and Ethical Hacking"
+    "CS101.2": "Introduction to Computer Science",
+    "CS102.3": "Programming Fundamentals",
+    "MA101.3": "Mathematics for Computing",
+    "CS105.3": "Database Management Systems",
+    "AI1102.2": "Fundamentals of Artificial Intelligence",
+    "CS103.2": "Personal Development & Communication Skills",
+    "MGT1104": "Introduction to Sustainability Development"
   },
   "degrees": [
-    "BIT-CYBER"
+    "SOC-26.3"
   ],
   "degreeNames": {
-    "BIT-CYBER": "VU Bachelor of Information Technology — Cyber Security (25.3, Year 2)"
+    "SOC-26.3": "Faculty of Computing — 26.3, Year 1 Semester 1"
   },
   "degreeModules": {
-    "BIT-CYBER": [
-      "NIT2102",
-      "NIT2171",
-      "NIT2122",
-      "NIT2141"
+    "SOC-26.3": [
+      "CS101.2",
+      "CS102.3",
+      "MA101.3",
+      "CS105.3",
+      "AI1102.2",
+      "CS103.2",
+      "MGT1104"
     ]
   }
 }

@@ -1,10 +1,11 @@
-name: Update VU timetable
+name: Update timetables
 
 on:
   workflow_dispatch:
   push:
     branches:
       - main
+      - timetable/sharepoint-soc
     paths-ignore:
       - "ics/**"
       - "config.json"
@@ -14,12 +15,22 @@ on:
 
 jobs:
   update_calendars:
+    name: Update ${{ matrix.branch }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        branch: [main, timetable/sharepoint-soc]
+    concurrency:
+      group: timetable-update-${{ matrix.branch }}
+      cancel-in-progress: false
     permissions:
       contents: write
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.branch }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -33,7 +44,7 @@ jobs:
 
       - name: Download live timetable
         env:
-          CAL_LINK: ${{ secrets.CAL_LINK }}
+          CAL_LINK: ${{ matrix.branch == 'main' && secrets.CAL_LINK || matrix.branch == 'timetable/sharepoint-soc' && vars.SOC_26_3_CAL_LINK || '' }}
         run: npm run download
 
       - run: npm run generate
@@ -47,5 +58,7 @@ jobs:
             echo "No calendar changes"
           else
             git commit -m "Update degree calendars"
-            git push
+            git push origin HEAD:"$TARGET_BRANCH"
           fi
+        env:
+          TARGET_BRANCH: ${{ matrix.branch }}

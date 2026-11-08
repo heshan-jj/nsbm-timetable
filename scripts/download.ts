@@ -4,8 +4,7 @@ import { promisify } from "node:util";
 import ExcelJS from "exceljs";
 import { config } from "../config.ts";
 
-const link = process.env.CAL_LINK;
-if (!link) throw new Error("Set CAL_LINK to the live NSBM workbook download URL");
+const link = process.env.CAL_LINK || config.sourceUrl;
 const url = new URL(link);
 if (url.hostname.endsWith(".sharepoint.com")) url.searchParams.set("download", "1");
 // SharePoint sets a cookie on the sharing-link redirect. wget keeps that cookie;
