@@ -9,8 +9,8 @@ on:
       - "ics/**"
       - "config.json"
   schedule:
-    # 00:30 UTC is 06:00 in Sri Lanka.
-    - cron: "30 0 * * *"
+    # 06:00, 12:00, 18:00 and 00:00 in Sri Lanka.
+    - cron: "30 */6 * * *"
 
 jobs:
   update_calendars:
