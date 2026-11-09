@@ -1,6 +1,6 @@
 Converts the NSBM VU 25.3 Year 2 Cyber Security Excel timetable into an automatically updated Google Calendar subscription.
 
-[ICS subscription link](https://raw.githubusercontent.com/heshan-jj/nsbm-timetable/main/ics/BIT-CYBER.ics)
+[ICS subscription link](https://raw.githubusercontent.com/heshan-jj/nsbm-timetable/vu-25.3-year-2-cyber-security/ics/BIT-CYBER.ics)
 
 ## Google Calendar
 
@@ -16,4 +16,4 @@ Converts the NSBM VU 25.3 Year 2 Cyber Security Excel timetable into an automati
 
 Subscribe using the URL to receive updates. The feed updates every six hours; your calendar app controls when it refreshes.
 
-The scheduled workflow on `main` refreshes both `main` (VU 25.3 Year 2) and `timetable/sharepoint-soc` (SOC 26.3 Year 1 Semester 1), committing each feed to its own branch. Runs are scheduled for 00:00, 06:00, 12:00 and 18:00 Sri Lanka time. The VU source uses the `CAL_LINK` repository secret; SOC uses its branch's default workbook URL, optionally overridden by the `SOC_26_3_CAL_LINK` repository variable. Both branches must be pushed for the workflow to update both feeds.
+The scheduled workflow on `vu-25.3-year-2-cyber-security` refreshes both `vu-25.3-year-2-cyber-security` (VU 25.3 Year 2) and `soc-26.3-year-1-semester-1` (SOC 26.3 Year 1 Semester 1), committing each feed to its own branch. Runs are scheduled for 00:00, 06:00, 12:00 and 18:00 Sri Lanka time. The VU source uses the `CAL_LINK` repository secret; SOC uses its branch's default workbook URL, optionally overridden by the `SOC_26_3_CAL_LINK` repository variable. Both branches must be pushed for the workflow to update both feeds.
