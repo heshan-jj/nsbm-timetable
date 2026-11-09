@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
-      - timetable/sharepoint-soc
+      - vu-25.3-year-2-cyber-security
+      - soc-26.3-year-1-semester-1
     paths-ignore:
       - "ics/**"
       - "config.json"
@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        branch: [main, timetable/sharepoint-soc]
+        branch: [vu-25.3-year-2-cyber-security, soc-26.3-year-1-semester-1]
     concurrency:
       group: timetable-update-${{ matrix.branch }}
       cancel-in-progress: false
@@ -44,7 +44,7 @@ jobs:
 
       - name: Download live timetable
         env:
-          CAL_LINK: ${{ matrix.branch == 'main' && secrets.CAL_LINK || matrix.branch == 'timetable/sharepoint-soc' && vars.SOC_26_3_CAL_LINK || '' }}
+          CAL_LINK: ${{ matrix.branch == 'vu-25.3-year-2-cyber-security' && secrets.CAL_LINK || matrix.branch == 'soc-26.3-year-1-semester-1' && vars.SOC_26_3_CAL_LINK || '' }}
         run: npm run download
 
       - run: npm run generate

@@ -1,6 +1,6 @@
 Converts the NSBM Faculty of Computing 26.3 Year 1 Semester 1 Excel timetable into a Google Calendar subscription, including Monday–Saturday classes, holidays and exam blocks.
 
-[ICS subscription link](https://raw.githubusercontent.com/heshan-jj/nsbm-timetable/timetable/sharepoint-soc/ics/SOC-26.3.ics) (available after this branch is pushed).
+[ICS subscription link](https://raw.githubusercontent.com/heshan-jj/nsbm-timetable/soc-26.3-year-1-semester-1/ics/SOC-26.3.ics).
 
 [Source workbook](https://nsbm365.sharepoint.com/:x:/g/SOC/IQDhIbZmFWZmSpbHiek_EkwwAXoXUu5D0ezXkIkE7BoBrlQ?e=xDbeYn)
 
@@ -22,4 +22,4 @@ Subscribe using the URL to receive updates; your calendar app controls when it r
 
 Run `npm ci`, `npm run download`, then `npm run generate` with Node.js 24 or later and wget (in WSL on Windows). The linked workbook is the default source; `CAL_LINK` can override it locally. Module codes and names follow the timetable worksheet's legend.
 
-The scheduled workflow on `main` refreshes both timetable branches at 00:00, 06:00, 12:00 and 18:00 Sri Lanka time, committing each feed to its own branch. Pushes to either branch and manual workflow runs also refresh both feeds. Both branches and the updated workflow on `main` must be pushed to enable this. The optional repository variable `SOC_26_3_CAL_LINK` overrides this intake's source independently of main's `CAL_LINK` secret.
+The scheduled workflow on `vu-25.3-year-2-cyber-security` refreshes both timetable branches at 00:00, 06:00, 12:00 and 18:00 Sri Lanka time, committing each feed to its own branch. Pushes to either branch and manual workflow runs also refresh both feeds. Both branches and the updated workflow on `vu-25.3-year-2-cyber-security` must be pushed to enable this. The optional repository variable `SOC_26_3_CAL_LINK` overrides this intake's source independently of main's `CAL_LINK` secret.
